@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+
+    <form id="registrationForm">
+        <!-- Example 1: Basic fields -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <!-- Task 2: Username field (alphanumeric, 4-12 characters) -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required
+               pattern="[a-zA-Z0-9]{4,12}"
+               title="Username must be 4-12 characters long and contain only letters and numbers."><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required minlength="6"><br><br>
+
+        <!-- Task 1: Confirm Password field -->
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required
+               pattern=".{6,}"
+               title="Password must be at least 6 characters long and match the password above."><br><br>
+
+        <!-- Example 2: Phone Number field -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required
+               pattern="\d{10}"
+               title="Phone number must be exactly 10 digits."><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("registrationForm");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+
+        // Task 1: Compare the "password" and "confirmPassword" fields
+        function validatePasswordMatch() {
+            if (confirmPassword.value !== password.value) {
+                confirmPassword.setCustomValidity("Passwords do not match.");
+            } else {
+                confirmPassword.setCustomValidity("");
+            }
+        }
+
+        // Re-check whenever either password field changes
+        password.addEventListener("input", validatePasswordMatch);
+        confirmPassword.addEventListener("input", validatePasswordMatch);
+
+        form.addEventListener("submit", function (event) {
+            validatePasswordMatch();
+
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                form.reportValidity();
+                return;
+            }
+
+            // No backend for this exercise, so stop the page from reloading
+            event.preventDefault();
+            alert("Registration successful!");
+            form.reset();
+        });
+    </script>
+</body>
+</html>

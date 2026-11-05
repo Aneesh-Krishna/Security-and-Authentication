@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- webform.html -->
+<!-- The HTML5 attributes give users instant feedback, but they are NOT a security control:
+     an attacker can skip the browser entirely. The server validates everything again. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVault Registration</title>
+</head>
+<body>
+    <h1>SafeVault Registration</h1>
+
+    <form id="registrationForm" action="/submit" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required
+               minlength="3" maxlength="30" pattern="[A-Za-z0-9_]{3,30}"
+               title="3-30 characters: letters, numbers and underscores only."
+               autocomplete="username"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required
+               maxlength="100" autocomplete="email"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required
+               minlength="12" maxlength="64"
+               title="12-64 characters. A short phrase of several words is easy to remember and hard to guess."
+               autocomplete="new-password"><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required
+               minlength="12" maxlength="64"
+               title="Must match the password above."
+               autocomplete="new-password"><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already registered? <a href="/login.html">Log in</a></p>
+
+    <!-- External file, not an inline script: the Content-Security-Policy blocks inline scripts. -->
+    <script src="/js/register.js"></script>
+</body>
+</html>

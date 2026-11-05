@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeVault Login</title>
+</head>
+<body>
+    <h1>SafeVault Login</h1>
+
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required maxlength="30"
+               autocomplete="username"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required maxlength="64"
+               autocomplete="current-password"><br><br>
+
+        <button type="submit">Log in</button>
+    </form>
+
+    <p>No account yet? <a href="/">Register</a></p>
+</body>
+</html>
